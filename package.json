@@ -1,7 +1,7 @@
 {
-  "name": "markdown-preview-enhanced",
+  "name": "markdown-preview-fake-referrer",
   "displayName": "%displayName%",
-  "version": "0.5.16",
+  "version": "0.5.19",
   "description": "%description%",
   "categories": [
     "Other"
@@ -10,16 +10,17 @@
     "markdown"
   ],
   "bugs": {
-    "url": "https://github.com/shd101wyy/vscode-markdown-preview-enhanced/issues"
+    "url": "https://github.com/JeffersonQin/vscode-markdown-preview-fake-referrer/issues"
   },
-  "repository": "https://github.com/shd101wyy/vscode-markdown-preview-enhanced",
+  "repository": "https://github.com/JeffersonQin/vscode-markdown-preview-fake-referrer",
   "license": "NCSA",
   "contributors": [
     "shd101wyy",
     "kachkaev",
-    "gabyx"
+    "gabyx",
+    "JeffersonQin"
   ],
-  "publisher": "shd101wyy",
+  "publisher": "JeffersonQin",
   "main": "./out/src/extension",
   "scripts": {
     "check": "npm run check:eslint && npm run check:prettier && npm run check:tsc && npm run check:tslint",
@@ -471,6 +472,16 @@
           "description": "Args passed to puppeteer.launch({args: $puppeteerArgs})",
           "default": [],
           "type": "array"
+        },
+        "markdown-preview-enhanced.fake-referrer": {
+          "description": "The referrer used to download images from restricted servers.",
+          "default": "",
+          "type": "string"
+        },
+        "markdown-preview-enhanced.restricted-prefixes": {
+          "description": "If the image link has one of the following prefixes, it will be downloaded using referrer previously configured.",
+          "default": [],
+          "type": "array"
         }
       }
     },
@@ -538,7 +549,9 @@
   },
   "dependencies": {
     "@shd101wyy/mume": "^0.6.3",
-    "@types/vfile": "^3.0.2"
+    "@types/vfile": "^3.0.2",
+    "cheerio": "^1.0.0-rc.3",
+    "child_process": "^1.0.2"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.18",

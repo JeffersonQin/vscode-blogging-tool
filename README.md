@@ -20,11 +20,25 @@
 
 If you are interested, please try out our new prototype web app: [0xGG/crossnote](https://github.com/0xGG/crossnote)
 
-## Supporting this project
-
-Markdown Preview Enhanced is an open source project released under the [University of Illinois/NCSA Open Source License](LICENSE.md). Its ongoing development is made possible thanks to the support by these awesome [backers](https://shd101wyy.github.io/markdown-preview-enhanced/#/backers). You can help make this project better by [supporting us on GitHub Sponsors](https://github.com/sponsors/shd101wyy), [PayPal](https://shd101wyy.github.io/markdown-preview-enhanced/#/paypal), or [微信支付 Wechat Pay](https://shd101wyy.github.io/markdown-preview-enhanced/#/wechat). Thank you!
-
 ## Introduction
+
+---
+
+This project is forked from [shd101wyy/vscode-markdown-preview-enhanced](https://github.com/shd101wyy/vscode-markdown-preview-enhanced). In this specific version, we enable you to use specific `referrer` in some image requests in order to render the images correctly. For more information, please visits [my blog](https://gyrojeff.top/index.php/archives/273/).
+
+本项目 fork 自[shd101wyy/vscode-markdown-preview-enhanced](https://github.com/shd101wyy/vscode-markdown-preview-enhanced)。在这个特定版本当中，我们支持使用特定的`referrer`来进行图片的请求，以在某些特定情况下正确渲染图片（比如说开启了防盗链的腾讯 COS / 阿里云 OSS）。更多信息，请访问[我的博客](https://gyrojeff.top/index.php/archives/273/).
+
+You can set up the referrer policy in setting page, the following to properties are concerned:
+
+- `markdown-preview-enhanced.restricted-prefixes`: If the image link has one of the following prefixes, it will be downloaded using referrer previously configured. Note: this is an array.
+- `markdown-preview-enhanced.fake-referrer`: The referrer used to download images from restricted servers.
+
+你可以在设置界面设置`referrer`的相关属性：
+
+- `markdown-preview-enhanced.restricted-prefixes`: 如果图像链接是以这里面的链接的其中之一作为前缀的，那么将会使用先前配置的`referrer`进行下载
+- `markdown-preview-enhanced.fake-referrer`: 需要使用的`referrer`
+
+---
 
 Markdown Preview Enhanced is an extension that provides you with many useful functionalities such as automatic scroll sync, [math typesetting](https://shd101wyy.github.io/markdown-preview-enhanced/#/math), [mermaid](https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=mermaid), [PlantUML](https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=plantuml), [pandoc](https://shd101wyy.github.io/markdown-preview-enhanced/#/pandoc), PDF export, [code chunk](https://shd101wyy.github.io/markdown-preview-enhanced/#/code-chunk), [presentation writer](https://rawgit.com/shd101wyy/markdown-preview-enhanced/master/docs/presentation-intro.html), etc. A lot of its ideas are inspired by [Markdown Preview Plus](https://github.com/atom-community/markdown-preview-plus) and [RStudio Markdown](http://rmarkdown.rstudio.com/).
 

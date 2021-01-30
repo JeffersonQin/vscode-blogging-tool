@@ -7,6 +7,8 @@ import * as path from "path";
 import * as vscode from "vscode";
 import { TextEditor, Uri } from "vscode";
 import { MarkdownPreviewEnhancedConfig } from "./config";
+import { spawn } from "child_process";
+import * as cheerio from "cheerio";
 
 // http://www.typescriptlang.org/play/
 // https://github.com/Microsoft/vscode/blob/master/extensions/markdown/media/main.js
@@ -584,6 +586,50 @@ export class MarkdownPreviewEnhancedView {
             // restart iframe
             this.refreshPreview(sourceUri);
           } else {
+            // Get file directory and file name
+            let fileDir = vscode.window.activeTextEditor.document.fileName;
+            let fileName = path.basename(fileDir);
+
+            fileDir = fileDir.substr(0, fileDir.length - 3);
+            fileName = fileName.substr(0, fileName.length - 3);
+
+            if (!fs.existsSync(fileDir)) {
+              fs.mkdirSync(fileDir);
+            }
+            // replace the image attributes
+            const $ = cheerio.load(html);
+            $("img").each((_index, element) => {
+              let link = element.attribs["src"];
+              this.config.restrictedPrefixes.forEach((prefix) => {
+                if (link.startsWith(prefix)) {
+                  element.attribs["src"] = this.getPreview(sourceUri)
+                    .webview.asWebviewUri(
+                      vscode.Uri.file(path.join(fileDir, path.basename(link))),
+                    )
+                    .toString();
+                  if (!fs.existsSync(path.join(fileDir, path.basename(link)))) {
+                    const curl = spawn("curl", [
+                      "-o",
+                      path.join(fileDir, path.basename(link)),
+                      "-e",
+                      `"${this.config.fakeReferrer}"`,
+                      link,
+                    ]);
+                    curl.stdout.on("data", (data) => {
+                      console.log(`stdout: ${data}`);
+                    });
+                    curl.stderr.on("data", (data) => {
+                      console.log(`stderr: ${data}`);
+                    });
+                    curl.on("close", (code) => {
+                      console.log(`child process exited with code ${code}`);
+                    });
+                  }
+                }
+              });
+            });
+
+            html = $.html();
             this.previewPostMessage(sourceUri, {
               command: "updateHTML",
               html,

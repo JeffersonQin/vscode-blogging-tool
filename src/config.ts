@@ -54,6 +54,10 @@ export class MarkdownPreviewEnhancedConfig implements MarkdownEngineConfig {
   public readonly singlePreview: boolean;
   public readonly automaticallyShowPreviewOfMarkdownBeingEdited: boolean;
 
+  // referrer config
+  public readonly fakeReferrer: string;
+  public readonly restrictedPrefixes: string[];
+
   private constructor() {
     const config = vscode.workspace.getConfiguration(
       "markdown-preview-enhanced",
@@ -134,6 +138,8 @@ export class MarkdownPreviewEnhancedConfig implements MarkdownEngineConfig {
     );
     this.usePuppeteerCore = config.get<boolean>("usePuppeteerCore");
     this.puppeteerArgs = config.get<string[]>("puppeteerArgs");
+    this.fakeReferrer = config.get<string>("fake-referrer");
+    this.restrictedPrefixes = config.get<string[]>("restricted-prefixes");
   }
 
   public isEqualTo(otherConfig: MarkdownPreviewEnhancedConfig) {
