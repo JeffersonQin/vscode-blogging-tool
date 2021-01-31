@@ -1,0 +1,71 @@
+.tip-handsome.inlineBlock {
+    display: inline-block;
+    width: -webkit-fill-available;
+}
+
+.tip-handsome.share {
+    border-left-color: #ddd;
+}
+
+.tip-handsome {
+    background: #2b2b2b;
+    color: rgb(171, 178, 191);
+    padding: 8px 20px;
+    border-left: 3px solid #38a3fd;
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.tip-handsome:before {
+    background: #38a3fd;
+    border-radius: 50%;
+    color: #fff;
+    content: "i";
+    font-family: Dosis, "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    height: 21px;
+    line-height: 21px;
+    margin-left: -32px;
+    margin-top: 5px;
+    position: absolute;
+    text-align: center;
+    width: 21px;
+}
+
+.tip-handsome.share:before {
+    background: #ddd;
+    content: "\0040";
+}
+
+.tip-handsome:before {
+    margin-top: 0!important;
+}
+
+.tip-handsome.warning:before {
+    background: #ff7800;
+    content: "\0021";
+}
+
+.tip-handsome.warning {
+    border-left-color: #ff7800;
+}
+
+.tip-handsome.error {
+    border-left-color: #ed0000;
+}
+
+.tip-handsome.error:before {
+    background: #ed0000;
+    content: "\00D7";
+}
+
+.tip-handsome.success {
+    border-left-color: #86cc00;
+}
+
+.tip-handsome.success:before {
+    background: #86cc00;
+    content: "\221a";
+}

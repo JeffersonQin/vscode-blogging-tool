@@ -1,4 +1,40 @@
-<h1 align="center"> Markdown Preview Enhanced </h1>
+# Blogging Tool
+
+This project is forked from [shd101wyy/vscode-markdown-preview-enhanced](https://github.com/shd101wyy/vscode-markdown-preview-enhanced), on which we modified into a blogging tool.
+
+本项目 fork 自[shd101wyy/vscode-markdown-preview-enhanced](https://github.com/shd101wyy/vscode-markdown-preview-enhanced)，在其基础上修改为博客写作工具。
+
+## Features
+
+### Snippets & Preview
+
+This extension also provides brilliant snippets and preview features for blog writing. Now, the following blog types / theme types are supported, more blogs/themes will be available in the near future:
+
+- **Typecho** / **Handsome**
+  - Snippet prefix: `>handsome-*`
+
+本插件还提供了某些特定的博客写作的`snippets`和预览功能。现阶段支持的博客和主题的种类已经列出，更多的博客/主题将会持续更新：
+
+- **Typecho** / **Handsome**主题
+  - `snippets`前缀：`>handsome-*`
+
+### Fake Referrer
+
+In this specific version, we enable you to use specific `referrer` in some image requests in order to render the images correctly. For more information, please visits [my blog](https://gyrojeff.top/index.php/archives/273/).
+
+在这个特定版本当中，我们支持使用特定的`referrer`来进行图片的请求，以在某些特定情况下正确渲染图片（比如说开启了防盗链的腾讯 COS / 阿里云 OSS）。更多信息，请访问[我的博客](https://gyrojeff.top/index.php/archives/273/).
+
+You can set up the referrer policy in setting page, the following to properties are concerned:
+
+- `markdown-preview-enhanced.restricted-prefixes`: If the image link has one of the following prefixes, it will be downloaded using referrer previously configured. Note: this is an array.
+- `markdown-preview-enhanced.fake-referrer`: The referrer used to download images from restricted servers.
+
+你可以在设置界面设置`referrer`的相关属性：
+
+- `markdown-preview-enhanced.restricted-prefixes`: 如果图像链接是以这里面的链接的其中之一作为前缀的，那么将会使用先前配置的`referrer`进行下载
+- `markdown-preview-enhanced.fake-referrer`: 需要使用的`referrer`
+
+---
 
 ![intro](https://user-images.githubusercontent.com/1908863/28495106-30b3b15e-6f09-11e7-8eb6-ca4ca001ab15.png)
 
@@ -20,25 +56,7 @@
 
 If you are interested, please try out our new prototype web app: [0xGG/crossnote](https://github.com/0xGG/crossnote)
 
-## Introduction
-
----
-
-This project is forked from [shd101wyy/vscode-markdown-preview-enhanced](https://github.com/shd101wyy/vscode-markdown-preview-enhanced). In this specific version, we enable you to use specific `referrer` in some image requests in order to render the images correctly. For more information, please visits [my blog](https://gyrojeff.top/index.php/archives/273/).
-
-本项目 fork 自[shd101wyy/vscode-markdown-preview-enhanced](https://github.com/shd101wyy/vscode-markdown-preview-enhanced)。在这个特定版本当中，我们支持使用特定的`referrer`来进行图片的请求，以在某些特定情况下正确渲染图片（比如说开启了防盗链的腾讯 COS / 阿里云 OSS）。更多信息，请访问[我的博客](https://gyrojeff.top/index.php/archives/273/).
-
-You can set up the referrer policy in setting page, the following to properties are concerned:
-
-- `markdown-preview-enhanced.restricted-prefixes`: If the image link has one of the following prefixes, it will be downloaded using referrer previously configured. Note: this is an array.
-- `markdown-preview-enhanced.fake-referrer`: The referrer used to download images from restricted servers.
-
-你可以在设置界面设置`referrer`的相关属性：
-
-- `markdown-preview-enhanced.restricted-prefixes`: 如果图像链接是以这里面的链接的其中之一作为前缀的，那么将会使用先前配置的`referrer`进行下载
-- `markdown-preview-enhanced.fake-referrer`: 需要使用的`referrer`
-
----
+## Markdown Preview Enhanced - Introduction
 
 Markdown Preview Enhanced is an extension that provides you with many useful functionalities such as automatic scroll sync, [math typesetting](https://shd101wyy.github.io/markdown-preview-enhanced/#/math), [mermaid](https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=mermaid), [PlantUML](https://shd101wyy.github.io/markdown-preview-enhanced/#/diagrams?id=plantuml), [pandoc](https://shd101wyy.github.io/markdown-preview-enhanced/#/pandoc), PDF export, [code chunk](https://shd101wyy.github.io/markdown-preview-enhanced/#/code-chunk), [presentation writer](https://rawgit.com/shd101wyy/markdown-preview-enhanced/master/docs/presentation-intro.html), etc. A lot of its ideas are inspired by [Markdown Preview Plus](https://github.com/atom-community/markdown-preview-plus) and [RStudio Markdown](http://rmarkdown.rstudio.com/).
 

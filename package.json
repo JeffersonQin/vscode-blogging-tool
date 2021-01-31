@@ -1,7 +1,7 @@
 {
-  "name": "markdown-preview-fake-referrer",
+  "name": "blogging-tool",
   "displayName": "%displayName%",
-  "version": "0.5.19",
+  "version": "0.6.0",
   "description": "%description%",
   "categories": [
     "Other"
@@ -10,9 +10,9 @@
     "markdown"
   ],
   "bugs": {
-    "url": "https://github.com/JeffersonQin/vscode-markdown-preview-fake-referrer/issues"
+    "url": "https://github.com/JeffersonQin/vscode-blogging-tool/issues"
   },
-  "repository": "https://github.com/JeffersonQin/vscode-markdown-preview-fake-referrer",
+  "repository": "https://github.com/JeffersonQin/vscode-blogging-tool",
   "license": "NCSA",
   "contributors": [
     "shd101wyy",
@@ -473,15 +473,20 @@
           "default": [],
           "type": "array"
         },
-        "markdown-preview-enhanced.fake-referrer": {
+        "blogging-tool.fake-referrer": {
           "description": "The referrer used to download images from restricted servers.",
           "default": "",
           "type": "string"
         },
-        "markdown-preview-enhanced.restricted-prefixes": {
+        "blogging-tool.restricted-prefixes": {
           "description": "If the image link has one of the following prefixes, it will be downloaded using referrer previously configured.",
           "default": [],
           "type": "array"
+        },
+        "blogging-tool.enable-handsome-feature": {
+          "description": "If set to true, some of the displaying features the theme Handsome of Typecho will be available to render, and snippets will be provided.",
+          "default": false,
+          "type": "boolean"
         }
       }
     },
@@ -529,7 +534,13 @@
           "group": "navigation"
         }
       ]
-    }
+    },
+    "snippets": [
+      {
+        "language": "markdown",
+        "path": "src/snippets/handsome.json"
+      }
+    ]
   },
   "activationEvents": [
     "onLanguage:markdown",

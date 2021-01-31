@@ -597,39 +597,57 @@ export class MarkdownPreviewEnhancedView {
               fs.mkdirSync(fileDir);
             }
             // replace the image attributes
+            const blogConfig = vscode.workspace.getConfiguration(
+              "blogging-tool",
+            );
             const $ = cheerio.load(html);
             $("img").each((_index, element) => {
               let link = element.attribs["src"];
-              this.config.restrictedPrefixes.forEach((prefix) => {
-                if (link.startsWith(prefix)) {
-                  element.attribs["src"] = this.getPreview(sourceUri)
-                    .webview.asWebviewUri(
-                      vscode.Uri.file(path.join(fileDir, path.basename(link))),
-                    )
-                    .toString();
-                  if (!fs.existsSync(path.join(fileDir, path.basename(link)))) {
-                    const curl = spawn("curl", [
-                      "-o",
-                      path.join(fileDir, path.basename(link)),
-                      "-e",
-                      `"${this.config.fakeReferrer}"`,
-                      link,
-                    ]);
-                    curl.stdout.on("data", (data) => {
-                      console.log(`stdout: ${data}`);
-                    });
-                    curl.stderr.on("data", (data) => {
-                      console.log(`stderr: ${data}`);
-                    });
-                    curl.on("close", (code) => {
-                      console.log(`child process exited with code ${code}`);
-                    });
+
+              blogConfig
+                .get<string[]>("restricted-prefixes")
+                .forEach((prefix) => {
+                  if (link.startsWith(prefix)) {
+                    element.attribs["src"] = this.getPreview(sourceUri)
+                      .webview.asWebviewUri(
+                        vscode.Uri.file(
+                          path.join(fileDir, path.basename(link)),
+                        ),
+                      )
+                      .toString();
+                    if (
+                      !fs.existsSync(path.join(fileDir, path.basename(link)))
+                    ) {
+                      const curl = spawn("curl", [
+                        "-o",
+                        path.join(fileDir, path.basename(link)),
+                        "-e",
+                        `"${blogConfig.get<string>("fake-referrer")}"`,
+                        link,
+                      ]);
+                      curl.stdout.on("data", (data) => {
+                        console.log(`stdout: ${data}`);
+                      });
+                      curl.stderr.on("data", (data) => {
+                        console.log(`stderr: ${data}`);
+                      });
+                      curl.on("close", (code) => {
+                        console.log(`child process exited with code ${code}`);
+                      });
+                    }
                   }
-                }
-              });
+                });
             });
 
             html = $.html();
+            if (blogConfig.get<boolean>("enable-handsome-feature"))
+              html = `<link rel="stylesheet" href="${this.getPreview(
+                sourceUri,
+              ).webview.asWebviewUri(
+                vscode.Uri.file(
+                  path.join(this.context.extensionPath, "src/lib/handsome.css"),
+                ),
+              )}">\n${html}`;
             this.previewPostMessage(sourceUri, {
               command: "updateHTML",
               html,
@@ -787,13 +805,13 @@ export class MarkdownPreviewEnhancedView {
   }
 
   /*
-  public cacheSVG(sourceUri: Uri, code:string, svg:string) {
-    const engine = this.getEngine(sourceUri)
-    if (engine) {
-      engine.cacheSVG(code, svg)
-    }
-  }
-  */
+	public cacheSVG(sourceUri: Uri, code:string, svg:string) {
+		const engine = this.getEngine(sourceUri)
+		if (engine) {
+			engine.cacheSVG(code, svg)
+		}
+	}
+	*/
 
   public cacheCodeChunkResult(sourceUri: Uri, id: string, result: string) {
     const engine = this.getEngine(sourceUri);

@@ -1,0 +1,35 @@
+{
+  "Handsome Quote": {
+    "prefix": [">handsome-quote"],
+    "body": [
+      "<div class=\"tip tip-handsome inlineBlock share\">\n$1\n</div>$0"
+    ],
+    "description": "Insert quote style in handsome"
+  },
+  "Handsome Warning": {
+    "prefix": [">handsome-warning"],
+    "body": [
+      "<div class=\"tip tip-handsome inlineBlock warning\">\n$1\n</div>$0"
+    ],
+    "description": "Insert warning style in handsome"
+  },
+  "Handsome Error": {
+    "prefix": [">handsome-error"],
+    "body": [
+      "<div class=\"tip tip-handsome inlineBlock error\">\n$1\n</div>$0"
+    ],
+    "description": "Insert error style in handsome"
+  },
+  "Handsome Info": {
+    "prefix": [">handsome-info"],
+    "body": ["<div class=\"tip tip-handsome inlineBlock info\">\n$1\n</div>$0"],
+    "description": "Insert info style in handsome"
+  },
+  "Handsome Success": {
+    "prefix": [">handsome-success"],
+    "body": [
+      "<div class=\"tip tip-handsome inlineBlock success\">\n$1\n</div>$0"
+    ],
+    "description": "Insert success style in handsome"
+  }
+}

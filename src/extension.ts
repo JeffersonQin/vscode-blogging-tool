@@ -427,6 +427,13 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.workspace.onDidChangeTextDocument((event) => {
       if (isMarkdownFile(event.document)) {
         contentProvider.update(event.document.uri);
+        const config = vscode.workspace.getConfiguration("blogging-tool");
+        const enableHandsomeFeature = config.get<boolean>(
+          "enable-handsome-feature",
+        );
+        if (enableHandsomeFeature)
+          if (event.contentChanges[0].text == ">")
+            vscode.commands.executeCommand("editor.action.triggerSuggest");
       }
     }),
   );
