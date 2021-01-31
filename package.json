@@ -1,7 +1,7 @@
 {
   "name": "blogging-tool",
   "displayName": "%displayName%",
-  "version": "0.6.0",
+  "version": "0.6.3",
   "description": "%description%",
   "categories": [
     "Other"
@@ -538,7 +538,7 @@
     "snippets": [
       {
         "language": "markdown",
-        "path": "src/snippets/handsome.json"
+        "path": "./snippets/handsome.json"
       }
     ]
   },

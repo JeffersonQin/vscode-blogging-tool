@@ -645,7 +645,7 @@ export class MarkdownPreviewEnhancedView {
                 sourceUri,
               ).webview.asWebviewUri(
                 vscode.Uri.file(
-                  path.join(this.context.extensionPath, "src/lib/handsome.css"),
+                  path.join(this.context.extensionPath, "./lib/handsome.css"),
                 ),
               )}">\n${html}`;
             this.previewPostMessage(sourceUri, {

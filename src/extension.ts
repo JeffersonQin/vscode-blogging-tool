@@ -432,7 +432,7 @@ export function activate(context: vscode.ExtensionContext) {
           "enable-handsome-feature",
         );
         if (enableHandsomeFeature)
-          if (event.contentChanges[0].text == ">")
+          if (event.contentChanges[0].text === ">")
             vscode.commands.executeCommand("editor.action.triggerSuggest");
       }
     }),
